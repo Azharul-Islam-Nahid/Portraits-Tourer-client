@@ -12,7 +12,7 @@ const Allservices = () => {
     }, [])
 
     return (
-        <div className="grid lg:grid-cols-3  gap-1 mb-10">
+        <div className="grid lg:grid-cols-3  gap-1 mt-20 mb-20">
         {
             allServices.map(service=><div
             key={service._id}

@@ -43,7 +43,9 @@ const Home = () => {
                 }
             </div>
                     <div className='text-center mb-10'>
+                        <Link to='/allservices'>
                     <button type="button" className="px-8 py-3 font-semibold rounded bg-sky-600 text-gray-50">See all</button>
+                        </Link>
                     </div>
             <div className='container mx-auto mb-20 w-9/12'>
                 <h1 className='font-extrabold text-2xl mb-10'>​Tips for writing great customer reviews</h1>
