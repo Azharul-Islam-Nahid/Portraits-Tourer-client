@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
 
@@ -10,8 +11,6 @@ const Home = () => {
             .then(data => setServices(data));
     }, [])
 
-
-console.log(services);
 
     return (
         <div className='container m-auto mt-0'>
@@ -36,7 +35,9 @@ console.log(services);
                             <p>Price: {service.price} $</p>
                             <p className="text-gray-800">{service.description.slice(0,100)+'...'}</p>
                         </div>
+                        <Link to={`/serviceDetail/${service._id}`}>
                         <button type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-sky-600 text-gray-50">Read more</button>
+                        </Link>
                     </div>
                 </div>)
                 }
