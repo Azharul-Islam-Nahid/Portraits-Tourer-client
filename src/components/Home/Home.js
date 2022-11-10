@@ -1,6 +1,18 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 const Home = () => {
+
+    const [services, setServices] = useState([]);
+
+    useEffect(() => {
+        fetch('http://localhost:5000/limitservices')
+            .then(res => res.json())
+            .then(data => setServices(data));
+    }, [])
+
+
+console.log(services);
+
     return (
         <div className='container m-auto mt-0'>
             <div className="hero min-h-screen">
@@ -11,7 +23,28 @@ const Home = () => {
                     </div>
                 </div>
             </div>
-            <div className='container mx-auto mb-10 w-9/12'>
+            <div className="grid lg:grid-cols-3  gap-1 mb-10">
+                {
+                    services.map(service=><div
+                    key={service._id}
+                     className="mx-auto mb-10 max-w-xs rounded-md shadow-md bg-gray-50 text-gray-800">
+                    <img src={service.service_img} alt="" className="object-cover object-center w-full rounded-t-md h-72 bg-gray-500" />
+                    <div className="flex flex-col justify-between p-6 space-y-8">
+                        <div className="space-y-2">
+                            <h2 className="text-3xl font-semibold tracking-wide">{service.service_name}</h2>
+                            <p>Duration: {service.duration}</p>
+                            <p>Price: {service.price} $</p>
+                            <p className="text-gray-800">{service.description.slice(0,100)+'...'}</p>
+                        </div>
+                        <button type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-sky-600 text-gray-50">Read more</button>
+                    </div>
+                </div>)
+                }
+            </div>
+                    <div className='text-center mb-10'>
+                    <button type="button" className="px-8 py-3 font-semibold rounded bg-sky-600 text-gray-50">See all</button>
+                    </div>
+            <div className='container mx-auto mb-20 w-9/12'>
                 <h1 className='font-extrabold text-2xl mb-10'>​Tips for writing great customer reviews</h1>
                 Provide useful, constructive feedback
         A good review includes enough detail to give others a feel for what happened.
