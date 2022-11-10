@@ -16,7 +16,7 @@ const Servicedetails = () => {
                         <p>Price: {service.price} $</p>
                         <p className="text-gray-800">Description: {service.description}</p>
                     </div>
-                        <Link to={``}>
+                        <Link to={`/review/${service._id}`}>
                         <button type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-sky-600 text-gray-50">Review</button>
                         </Link>
                     </div>
