@@ -45,8 +45,8 @@ const Login = () => {
 	<h1 className="text-2xl font-bold text-center">Login</h1>
 	<form onSubmit={handleLogin} noValidate="" action="" className="space-y-6 ng-untouched ng-pristine ng-valid">
 		<div className="space-y-1 text-sm">
-			<label htmlFor="username" className="block text-gray-600">Username</label>
-			<input type="text" name="username" id="username" placeholder="Username" className="w-full px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-sky-600" />
+			<label htmlFor="email" className="block text-gray-600">email</label>
+			<input type="text" name="email" id="email" placeholder="Your email" className="w-full px-4 py-3 rounded-md border-gray-300 bg-gray-50 text-gray-800 focus:border-sky-600" />
 		</div>
 		<div className="space-y-1 text-sm">
 			<label htmlFor="password" className="block text-gray-600">Password</label>
