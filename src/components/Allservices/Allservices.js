@@ -23,7 +23,7 @@ const Allservices = () => {
                     <h2 className="text-3xl font-semibold tracking-wide">{service.service_name}</h2>
                     <p>Duration: {service.duration}</p>
                     <p>Price: {service.price} $</p>
-                    <p className="text-gray-800">{service.description.slice(0,100)+'...'}</p>
+                    <p className="text-gray-800">Description: {service.description.slice(0,100)+'...'}</p>
                 </div>
                 <Link to={`/serviceDetail/${service._id}`}>
                 <button type="button" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-sky-600 text-gray-50">Read more</button>

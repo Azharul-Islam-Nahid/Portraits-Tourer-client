@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { useLoaderData } from 'react-router-dom';
+import { Link, useLoaderData } from 'react-router-dom';
 import { AuthContext } from '../../contexts/Authprovider/Authprovider';
 
 const Reviews = () => {
@@ -7,7 +7,6 @@ const Reviews = () => {
     const { user } = useContext(AuthContext);
     
     const review = useLoaderData();
-    console.log(review);
 
     const handleReviewSubmit = e => {
         
@@ -22,8 +21,9 @@ const Reviews = () => {
 
 
         const order = {
-            service: review?._id,
+            id: review?._id,
             serviceName: review?.service_name,
+            serviceImage:review?.service_img,
             price: review?.price,
             customer: name,
             email: email,
@@ -60,7 +60,7 @@ const Reviews = () => {
     return (
 
         <div>
-            <section className="p-6 bg-gray-100 text-gray-900">
+            <section className="mt-20 mb-20 p-6 bg-gray-100 text-gray-900">
 	<form onSubmit={handleReviewSubmit} noValidate="" action="" className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
 		<fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-gray-50">
 			<div className="space-y-2 col-span-full lg:col-span-1">
@@ -72,11 +72,11 @@ const Reviews = () => {
 			<div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="firstname" className="text-sm">First name</label>
-					<input id="firstname" type="text" name='firstname' placeholder="First name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" />
+					<input id="firstname" type="text" name='firstname' placeholder="First name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="lastname" className="text-sm">Last name</label>
-					<input id="lastname" type="text" name='lastname' placeholder="Last name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" />
+					<input id="lastname" type="text" name='lastname' placeholder="Last name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="phone" className="text-sm">Phone</label>
@@ -84,7 +84,7 @@ const Reviews = () => {
 				</div>
 				<div className="col-span-full sm:col-span-3">
 					<label htmlFor="email" className="text-sm">Email</label>
-					<input id="email" type="email" name='email' placeholder="Email" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" />
+					<input id="email" type="email" name='email' placeholder="your Email" defaultValue={user?.email} className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
 				</div>
 				<div className="col-span-full">
 					<label htmlFor="address" className="text-sm">Address</label>
@@ -92,10 +92,16 @@ const Reviews = () => {
 				</div>
 				<div className="col-span-full">
 					<label htmlFor="message" className="text-sm">Review</label>
-					<input id="message" type="text"  name='message' placeholder="write your review here" className="w-full h-25 rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" />
+					<input id="message" type="text"  name='message' placeholder="write your review here" className="w-full h-25 rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
 				</div>
-					<label htmlFor="submit" className="text-sm"></label>
-                    <button type="submit" className="px-4 py-2 border rounded-md border-gray-800">post your review</button>
+					{
+                        user?.uid? <>
+                         <label htmlFor="submit" className="text-sm"></label>
+                        <button type="submit" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-sky-600 text-gray-50">post</button>
+                        </>
+                        :
+                        <p>please <Link to='/login'>login</Link> to add review</p>
+                    }
 			</div>
 		</fieldset>
 	</form>
