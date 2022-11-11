@@ -36,6 +36,9 @@ const Myreview = () => {
         }
     };
 
+
+   
+
     return (
         <div>
         <div className="overflow-x-auto w-full">
@@ -58,7 +61,6 @@ const Myreview = () => {
                             key={review._id}
                             review={review}
                             handleDelete={handleDelete}
-                            // handleStatusUpdate={handleStatusUpdate}
                         ></Reviewrow>)
                     }
                 </tbody>
