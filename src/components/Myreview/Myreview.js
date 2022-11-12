@@ -1,4 +1,5 @@
 import React, { useContext, useEffect, useState } from 'react';
+import toast from 'react-hot-toast';
 import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/Authprovider/Authprovider';
 import Reviewrow from './Reviewrow';
@@ -43,7 +44,7 @@ const Myreview = () => {
                 .then(data => {
                     console.log(data);
                     if (data.deletedCount > 0) {
-                        alert('review deleted successfully')
+                        toast.success('review deleted');
                         const remaining = reviews.filter(rev => rev._id !== id);
                         setReviews(remaining);
                     }

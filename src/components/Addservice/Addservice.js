@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/Authprovider/Authprovider';
 
 const Addservice = () => {
@@ -34,7 +35,8 @@ const Addservice = () => {
         fetch('http://localhost:5000/allservices', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization:`Bearer ${localStorage.getItem('portraits-token')}`
             },
             body: JSON.stringify(order)
         })
@@ -42,8 +44,8 @@ const Addservice = () => {
             .then(data => {
                 console.log(data)
                 if (data.acknowledged) {
-                    alert('post submitted')
                     form.reset();
+                    toast.success('review posted');
                 }
             })
             .catch(err => console.error(err))

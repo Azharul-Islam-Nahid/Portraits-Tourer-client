@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {GoogleAuthProvider} from 'firebase/auth';
 import { AuthContext } from '../../contexts/Authprovider/Authprovider';
+import toast from 'react-hot-toast';
 
 const Register = () => {
 
@@ -17,6 +18,7 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
 				navigate('/')
+				toast.success('Successfully logged in');
             })
             .catch(error => {
                 console.error('error', error);
@@ -34,6 +36,7 @@ const Register = () => {
                 const user = result.user;
                 console.log(user);
 				navigate('/')
+				toast.success('User registered Successfully');
             })
             .catch(err => console.error(err));
     }

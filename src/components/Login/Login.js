@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { Link,useNavigate,useLocation } from 'react-router-dom';
 import {GoogleAuthProvider} from 'firebase/auth';
 import { AuthContext } from '../../contexts/Authprovider/Authprovider';
+import toast from 'react-hot-toast';
 
 const Login = () => {
 
@@ -17,14 +18,36 @@ const Login = () => {
 
     const HandleGoogleSignIn = () => {
         providerLogin(googleProvider)
-            .then(result => {
-                const user = result.user;
-                console.log(user);
+		.then(result => {
+			const user = result.user;
+
+			const currentUser = {
+				email: user.email
+				
+			}
+			
+			console.log(currentUser);
+
+			// get jwt token
+			fetch('http://localhost:5000/jwt',{
+				method: 'POST',
+				headers:{
+					'content-type':'application/json'
+				},
+				body: JSON.stringify(currentUser)
+			})
+
+			.then(res=>res.json())
+			.then(data=>{
+				console.log(data);
+				localStorage.setItem('portraits-token',data.token);
 				navigate(from, { replace: true });
-            })
-            .catch(error => {
-                console.error('error', error);
-            })
+				toast.success('Successfully logged in');
+			});
+
+		})
+		.catch(error => console.error(error));
+            
     }
 
     const handleLogin = event => {
@@ -60,6 +83,7 @@ const Login = () => {
 					console.log(data);
 					localStorage.setItem('portraits-token',data.token);
 					navigate(from, { replace: true });
+					toast.success('Successfully logged in');
 				});
 
             })

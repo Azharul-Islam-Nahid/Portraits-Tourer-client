@@ -1,5 +1,6 @@
 import React, { useContext } from 'react';
 import { Link, useLoaderData } from 'react-router-dom';
+import toast from 'react-hot-toast';
 import { AuthContext } from '../../contexts/Authprovider/Authprovider';
 
 const Reviews = () => {
@@ -40,7 +41,8 @@ const Reviews = () => {
         fetch('http://localhost:5000/reviews', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json'
+                'content-type': 'application/json',
+                authorization:`Bearer ${localStorage.getItem('portraits-token')}`
             },
             body: JSON.stringify(order)
         })
@@ -48,8 +50,8 @@ const Reviews = () => {
             .then(data => {
                 console.log(data)
                 if (data.acknowledged) {
-                    alert('review submitted')
                     form.reset();
+                    toast.success('review posted');
                 }
             })
             .catch(err => console.error(err))
