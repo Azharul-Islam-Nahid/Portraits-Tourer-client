@@ -47,7 +47,7 @@ const Reviewrow = ({ review, handleDelete}) => {
 </div>
             <th>
                 <label>
-                    <button onClick={() => handleDelete(_id)} className='btn btn-ghost'>X</button>
+                    <button onClick={() => handleDelete(_id)} className='btn btn-ghost'>Delete</button>
                 </label>
             </th>
             <td>

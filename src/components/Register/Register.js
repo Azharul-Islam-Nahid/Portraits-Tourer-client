@@ -1,9 +1,11 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {GoogleAuthProvider} from 'firebase/auth';
 import { AuthContext } from '../../contexts/Authprovider/Authprovider';
 
 const Register = () => {
+
+	const navigate = useNavigate();
 
     const { createUser,providerLogin } = useContext(AuthContext);
 
@@ -14,6 +16,7 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+				navigate('/')
             })
             .catch(error => {
                 console.error('error', error);
@@ -30,6 +33,7 @@ const Register = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+				navigate('/')
             })
             .catch(err => console.error(err));
     }

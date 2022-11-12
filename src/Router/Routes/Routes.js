@@ -10,6 +10,7 @@ import Register from "../../components/Register/Register";
 import Reviews from "../../components/Reviews/Reviews";
 import Servicedetails from "../../components/Servicedetails/Servicedetails";
 import Main from "../../Layout/Main";
+import PrivateRoute from "../Privateroute/Privateroute";
 
 
 const router =createBrowserRouter([
@@ -45,11 +46,11 @@ const router =createBrowserRouter([
         },
         {
           path:'/addservice',
-          element:<Addservice></Addservice>
+          element:<PrivateRoute><Addservice></Addservice></PrivateRoute>
         },
         {
           path:'/myreview',
-          element:<Myreview></Myreview>
+          element:<PrivateRoute><Myreview></Myreview></PrivateRoute>
         },
         {
           path:'/blog',

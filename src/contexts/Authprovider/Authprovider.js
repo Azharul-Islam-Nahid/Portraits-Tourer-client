@@ -23,10 +23,11 @@ const AuthProvider = ({ children }) => {
 
     const login = (email, password) => {
         setLoading(true);
-        signInWithEmailAndPassword(auth, email, password)
+        return signInWithEmailAndPassword(auth, email, password)
     }
 
       const logOut = () => {
+        localStorage.removeItem('portraits-token');
         setLoading(true);
         return signOut(auth);
     }

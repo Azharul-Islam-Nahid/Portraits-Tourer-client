@@ -1,12 +1,17 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
+import { Link,useNavigate,useLocation } from 'react-router-dom';
 import {GoogleAuthProvider} from 'firebase/auth';
 import { AuthContext } from '../../contexts/Authprovider/Authprovider';
 
 const Login = () => {
 
-    
     const { login,providerLogin } = useContext(AuthContext);
+
+	const location = useLocation();
+	const navigate = useNavigate();
+
+	 const from = location.state?.from?.pathname || '/';
+
 
     const googleProvider = new GoogleAuthProvider();
 
@@ -15,6 +20,7 @@ const Login = () => {
             .then(result => {
                 const user = result.user;
                 console.log(user);
+				navigate(from, { replace: true });
             })
             .catch(error => {
                 console.error('error', error);
@@ -22,6 +28,8 @@ const Login = () => {
     }
 
     const handleLogin = event => {
+
+
         event.preventDefault();
         const form = event.target;
         const email = form.email.value;
@@ -29,15 +37,35 @@ const Login = () => {
 
         login(email, password)
             .then(result => {
-                const user = result.user;
-                console.log(user);
-            })
+				const user = result.user;
 
-            .then(error => {
-                console.error(error);
-            })
+				const currentUser = {
+					email: user.email
+					
+                }
+				
+                console.log(currentUser);
 
-    }
+				// get jwt token
+				fetch('http://localhost:5000/jwt',{
+					method: 'POST',
+					headers:{
+						'content-type':'application/json'
+					},
+					body: JSON.stringify(currentUser)
+				})
+
+				.then(res=>res.json())
+				.then(data=>{
+					console.log(data);
+					localStorage.setItem('portraits-token',data.token);
+					navigate(from, { replace: true });
+				});
+
+            })
+			.catch(error => console.error(error));
+
+		}
 
     return (
         <div className='mt-20 mb-20'>

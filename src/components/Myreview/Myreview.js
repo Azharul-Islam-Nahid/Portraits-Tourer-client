@@ -1,19 +1,35 @@
 import React, { useContext, useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/Authprovider/Authprovider';
 import Reviewrow from './Reviewrow';
 
 const Myreview = () => {
 
-    const {user}= useContext(AuthContext);
+    const navigate = useNavigate();
+
+    const {logOut,user}= useContext(AuthContext);
 
     const [reviews, setReviews] = useState([]);
     console.log(reviews);
 
     useEffect(() => {
-        fetch(`http://localhost:5000/reviews?email=${user?.email}`)
-            .then(res => res.json())
-            .then(data => setReviews(data))
-    }, [user?.email])
+        fetch(`http://localhost:5000/reviews?email=${user?.email}`,{
+            headers:{
+                authorization:`Bearer ${localStorage.getItem('portraits-token')}`
+            }
+        })
+            .then(res => {
+                if (res.status === 401 || res.status === 403) {
+                    logOut()
+                    return navigate('/login')
+                }
+                return res.json()
+            })
+            .then(data => {
+
+                setReviews(data)
+            })
+    }, [user?.email,logOut,navigate])
 
 
     const handleDelete = id => {
@@ -46,13 +62,13 @@ const Myreview = () => {
 
                 <thead>
                     <tr>
-                        <th>
-                        </th>
+                        <th></th>
+                        <th></th>
                         <th>Name</th>
                         <th>Service</th>
-                        <th>Cost</th>
+                        <th>Price</th>
                         <th>message</th>
-                        <th></th>
+                        <th>Update</th>
                     </tr>
                 </thead>
                 <tbody>
