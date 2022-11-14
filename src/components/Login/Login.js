@@ -29,10 +29,9 @@ const Login = () => {
 				
 			}
 			
-			console.log(currentUser);
 
 			// get jwt token
-			fetch('http://localhost:5000/jwt',{
+			fetch('https://portraits-tourer-server-side.vercel.app/jwt',{
 				method: 'POST',
 				headers:{
 					'content-type':'application/json'
@@ -73,7 +72,7 @@ const Login = () => {
                 console.log(currentUser);
 
 				// get jwt token
-				fetch('http://localhost:5000/jwt',{
+				fetch('https://portraits-tourer-server-side.vercel.app/jwt',{
 					method: 'POST',
 					headers:{
 						'content-type':'application/json'
@@ -83,7 +82,6 @@ const Login = () => {
 
 				.then(res=>res.json())
 				.then(data=>{
-					console.log(data);
 					localStorage.setItem('portraits-token',data.token);
 					navigate(from, { replace: true });
 					toast.success('Successfully logged in');

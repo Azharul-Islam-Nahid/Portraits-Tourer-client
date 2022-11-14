@@ -30,12 +30,12 @@ const router =createBrowserRouter([
         {
             path:'/serviceDetail/:id',
             element:<Servicedetails></Servicedetails>,
-            loader:({params})=>fetch(`http://localhost:5000/allservices/${params.id}`)
+            loader:({params})=>fetch(`https://portraits-tourer-server-side.vercel.app/allservices/${params.id}`)
         },
         {
           path:'/review/:id',
           element:<Reviews></Reviews>,
-          loader:({params})=>fetch(`http://localhost:5000/allservices/${params.id}`)
+          loader:({params})=>fetch(`https://portraits-tourer-server-side.vercel.app/allservices/${params.id}`)
         },
         {
           path:'/register',

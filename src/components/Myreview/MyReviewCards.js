@@ -31,7 +31,6 @@ const MyReviewCards = ({ myReview, handleDelete }) => {
         })
         .then(res=> res.json())
         .then(data=>{
-            console.log(data);
             if(data.acknowledged){
                 toast.success('Review updated succesfully')
                 setShowModal(false)
@@ -80,28 +79,6 @@ const MyReviewCards = ({ myReview, handleDelete }) => {
                     </div>
                 ) : null }
             </th>
-
-            {/* <th>
-                <label onClick={()=> handleTakeId(_id)} htmlFor="my-modal-6" className="btn bg-slate-700 border-none btn-sm"><FaPen/></label>
-
-                <input type="checkbox" id="my-modal-6" className="modal-toggle" />
-                <div className="modal modal-bottom sm:modal-middle">
-                    <div className="modal-box relative">
-                    <form>
-                        <label htmlFor="my-modal-6" className="btn btn-sm btn-circle absolute right-2 top-2">✕</label>
-                        <h3 className="font-bold text-lg">Edit your review</h3>
-                        
-                            <input onBlur={handleBlur} id="text" type="text" className="w-full p-3 mt-2 rounded dark:bg-gray-200 " defaultValue={review} />
-                        
-                        <div onClick={()=> handleEdit() } id="my-modal-6" className="modal-action">
-                            <label  htmlFor="my-modal-6" className="btn">Edit</label>
-                        </div>
-                        </form>
-                    </div>
-                </div>
-            </th> */}
-
-
         </tr>
         
     );

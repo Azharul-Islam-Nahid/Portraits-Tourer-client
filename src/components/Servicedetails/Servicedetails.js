@@ -8,12 +8,12 @@ const Servicedetails = () => {
   const [reviews, setReviews] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/reviews/${_id}`)
+    fetch(`https://portraits-tourer-server-side.vercel.app/reviews/${_id}`)
       .then((res) => res.json())
       .then((data) => setReviews(data));
   }, [_id]);
 
-  console.log(reviews);
+  // console.log(reviews);
   return (
     <div className=" w-full">
       <div className="m-auto mt-20 mb-20 w-2/4 rounded-md shadow-md bg-gray-50 text-gray-800">

@@ -35,7 +35,7 @@ const Addservice = () => {
         }
 
         
-        fetch('http://localhost:5000/allservices', {
+        fetch('https://portraits-tourer-server-side.vercel.app/allservices', {
             method: 'POST',
             headers: {
                 'content-type': 'application/json'
@@ -44,7 +44,6 @@ const Addservice = () => {
         })
             .then(res => res.json())
             .then(data => {
-                console.log(data)
                 if (data.acknowledged) {
                     form.reset();
                     toast.success('review posted');

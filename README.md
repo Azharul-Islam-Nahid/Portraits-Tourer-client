@@ -2,6 +2,26 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+# Project name: Portraits Tourer , personal service review based react single page web app
+
+# CSS component library used Tailwind & Daisy UI & mamba.
+
+# Authenticated using google firebase.
+
+# Added Private route.
+
+# JWT verification implemented.
+
+# User friendly Interface.
+
+# Reveiew posting updating and delete function available.
+
+# All data fetched from mongo db server.
+
+# Fully desktop & mobile responsive site.
+
+# Live site : https://portraits-tourer.web.app
+
 ## Available Scripts
 
 In the project directory, you can run:

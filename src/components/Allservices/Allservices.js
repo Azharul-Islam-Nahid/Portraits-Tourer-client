@@ -14,7 +14,7 @@ const Allservices = () => {
     const [ spinner, setSpinner ] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:5000/allservices')
+        fetch('https://portraits-tourer-server-side.vercel.app/allservices')
             .then(res => res.json())
             .then(data => {
                 setAllServices(data)

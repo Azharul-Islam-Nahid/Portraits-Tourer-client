@@ -10,7 +10,7 @@ const Home = () => {
     const [services, setServices] = useState([]);
 
     useEffect(() => {
-        fetch('http://localhost:5000/limitservices')
+        fetch('https://portraits-tourer-server-side.vercel.app/limitservices')
             .then(res => res.json())
             .then(data => setServices(data));
     }, [])
