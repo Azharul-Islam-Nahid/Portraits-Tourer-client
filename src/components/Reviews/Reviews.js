@@ -1,48 +1,47 @@
 import React, { useContext } from 'react';
-import { Link, useLoaderData } from 'react-router-dom';
+import { Helmet } from 'react-helmet-async';
 import toast from 'react-hot-toast';
+import { Link, useLoaderData, useLocation, useNavigate } from 'react-router-dom';
 import { AuthContext } from '../../contexts/Authprovider/Authprovider';
 
 const Reviews = () => {
+    <Helmet>
+        <title>add review</title>
+      </Helmet>
+     
     
     const { user } = useContext(AuthContext);
+    const { _id, service_name} = useLoaderData();
+    const navigate = useNavigate();
     
-    const review = useLoaderData();
+    // const review = useLoaderData();
+    const location = useLocation()
 
-    const handleReviewSubmit = e => {
+    const handleReviewSubmit = event => {
         
-        e.preventDefault();
-        
-        const form = e.target;
-        const name = `${form.firstname.value}  ${form.lastname.value}`;
-        const phone = form.phone.value;
-        const email = user?.email || 'unregistered';
-        const message = form.message.value;
-        const address = form.address.value;
+        event.preventDefault();
+            const form = event.target;
+            const name = form.name.value ;
+            const image = form.url.value;
+            // console.log(image);
+            const email = user?.email || 'uregistered';
+            const message = form.message.value;
 
 
         const order = {
-            id: review?._id,
-            serviceName: review?.service_name,
-            serviceImage:review?.service_img,
-            price: review?.price,
-            customer: name,
-            email: email,
-            phone: phone,
-            message: message,
-            address: address
+            id: _id,
+                name,
+                review: message,
+                image,
+                email,
+                service_name
 
-        }
-
-        if (phone.length > 11) {
-            alert('Enter valid phone number')
         }
         
-        fetch('http://localhost:5000/reviews', {
+        fetch('http://localhost:5000/addreviews', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json',
-                authorization:`Bearer ${localStorage.getItem('portraits-token')}`
+                'content-type': 'application/json'
             },
             body: JSON.stringify(order)
         })
@@ -52,6 +51,7 @@ const Reviews = () => {
                 if (data.acknowledged) {
                     form.reset();
                     toast.success('review posted');
+                    navigate('/myreview')
                 }
             })
             .catch(err => console.error(err))
@@ -61,53 +61,36 @@ const Reviews = () => {
 
     return (
 
-        <div>
-            <section className="mt-20 mb-20 p-6 bg-gray-100 text-gray-900">
-	<form onSubmit={handleReviewSubmit} noValidate="" action="" className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
-		<fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-gray-50">
-			<div className="space-y-2 col-span-full lg:col-span-1">
-				<p className="font-medium">Personal Review</p>
-				<p className="text-xs">Let me know about what can i improve more to provide the best service</p>
-                <h2 className="text-3xl font-semibold tracking-wide">{review.service_name}</h2>
-                <img src={review.service_img} alt="" className="object-cover object-center w-full rounded-t-md h-72 bg-gray-500" />
-			</div>
-			<div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
-				<div className="col-span-full sm:col-span-3">
-					<label htmlFor="firstname" className="text-sm">First name</label>
-					<input id="firstname" type="text" name='firstname' placeholder="First name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
-				</div>
-				<div className="col-span-full sm:col-span-3">
-					<label htmlFor="lastname" className="text-sm">Last name</label>
-					<input id="lastname" type="text" name='lastname' placeholder="Last name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
-				</div>
-				<div className="col-span-full sm:col-span-3">
-					<label htmlFor="phone" className="text-sm">Phone</label>
-					<input id="phone" type="text" name='phone' placeholder="your phone" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" />
-				</div>
-				<div className="col-span-full sm:col-span-3">
-					<label htmlFor="email" className="text-sm">Email</label>
-					<input id="email" type="email" name='email' placeholder="your Email" defaultValue={user?.email} className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
-				</div>
-				<div className="col-span-full">
-					<label htmlFor="address" className="text-sm">Address</label>
-					<input id="address" type="text" placeholder="address" name='address' className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" />
-				</div>
-				<div className="col-span-full">
-					<label htmlFor="message" className="text-sm">Review</label>
-					<input id="message" type="text"  name='message' placeholder="write your review here" className="w-full h-25 rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
-				</div>
-					{
-                        user?.uid? <>
-                         <label htmlFor="submit" className="text-sm"></label>
-                        <button type="submit" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-sky-600 text-gray-50">post</button>
-                        </>
-                        :
-                        <p>please <Link to='/login'>login</Link> to add review</p>
-                    }
-			</div>
-		</fieldset>
-	</form>
-</section>
+        <div className="grid max-w-screen-xl mt-10 items-center grid-cols-1 mb-5 gap-8 px-8 py-16 mx-auto rounded-lg md:grid-cols-2 md:px-12 lg:px-16 xl:px-32 dark:bg-sky-800 dark:text-gray-100">
+            <div className="flex flex-col justify-between">
+                <div className="space-y-2">
+                    <h2 className="text-4xl font-bold leading-tight lg:text-5xl">Let's add review</h2>
+                </div>
+                {/* <img src={image} alt="" className="p-6 h-auto " /> */}
+            </div>
+            <form onSubmit={handleReviewSubmit} noValidate="" className="space-y-6 ng-untouched ng-pristine ng-valid">
+                <div>
+                    <label htmlFor="name" className="text-sm">Full name</label>
+                    <input id="name" type="text" placeholder="" className="w-full text-gray-800 p-3 rounded dark:bg-gray-300" defaultValue={user?.displayName}  required />
+                </div>
+                <div>
+                    <label htmlFor="email" className="text-sm">Email</label>
+                    <input id="email" type="email" placeholder="" className="w-full text-gray-800 p-3 rounded dark:bg-gray-300" defaultValue={user?.email} readOnly />
+                </div>
+                <div>
+                    <label htmlFor="url" className="text-sm">Image Url</label>
+                    <input id="url" type="text" className="w-full text-gray-800 p-3 rounded dark:bg-gray-300" defaultValue={user?.photoURL} required />
+                </div>
+                <div>
+                    <label htmlFor="message" className="text-sm">Feedback</label>
+                    <textarea id="message" rows="3" className="w-full text-gray-800 p-3 rounded dark:bg-gray-300"></textarea>
+                </div>
+                {
+                    user?.uid ? <button type="submit" className="w-full p-3 text-sm font-bold tracking-wide uppercase rounded dark:bg-gray-300 dark:text-gray-800">Send Feedback</button>
+                    :
+                    <h3 className="font-bold text-lg">Please <Link to='/login' state={{from: location}} replace className='underline'>Login</Link> to add a review</h3>
+                }
+            </form>
         </div>
     );
 };

@@ -1,9 +1,12 @@
 import React, { useContext } from 'react';
-import { Link } from 'react-router-dom';
 import toast from 'react-hot-toast';
+import { Link } from 'react-router-dom';
 import { AuthContext } from '../../contexts/Authprovider/Authprovider';
+import useTitle from '../../hooks/useTitle';
 
 const Addservice = () => {
+
+    useTitle('Add Service')
 
     const { user } = useContext(AuthContext);
 
@@ -35,8 +38,7 @@ const Addservice = () => {
         fetch('http://localhost:5000/allservices', {
             method: 'POST',
             headers: {
-                'content-type': 'application/json',
-                authorization:`Bearer ${localStorage.getItem('portraits-token')}`
+                'content-type': 'application/json'
             },
             body: JSON.stringify(order)
         })
@@ -56,41 +58,41 @@ const Addservice = () => {
 
     return (
         <div>
-        <section className="mt-20 mb-20 p-6 bg-gray-100 text-gray-900">
+        <section className="mt-20 mb-20 p-6 text-gray-900">
 <form onSubmit={handleServiceSubmit} action="" className="container flex flex-col mx-auto space-y-12 ng-untouched ng-pristine ng-valid">
-    <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-gray-50">
+    <fieldset className="grid grid-cols-4 gap-6 p-6 rounded-md shadow-sm bg-sky-800">
         <div className="space-y-2 col-span-full lg:col-span-1">
-            <p className="font-medium">Add Service</p>
-            <p className="text-xs">Let's add some new services</p>
+            <p className="font-medium text-white">Add Service</p>
+            <p className="text-xs text-white">Let's add some new services</p>
         </div>
         <div className="grid grid-cols-6 gap-4 col-span-full lg:col-span-3">
             <div className="col-span-full sm:col-span-3">
-                <label htmlFor="serviceName" className="text-sm">Service name</label>
-                <input id="serviceName" type="text" name='serviceName' placeholder="Service name" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
+                <label htmlFor="serviceName" className="text-white text-sm">Service name</label>
+                <input id="serviceName" type="text" name='serviceName' placeholder="Service name" className="w-full p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
             </div>
             <div className="col-span-full sm:col-span-3">
-                <label htmlFor="duration" className="text-sm">Duration</label>
-                <input id="duration" type="text" name='duration' placeholder="duration" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
+                <label htmlFor="duration" className="text-white text-sm">Duration</label>
+                <input id="duration" type="text" name='duration' placeholder="duration" className="w-full p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
             </div>
             <div className="col-span-full sm:col-span-3">
-                <label htmlFor="serviceImageUrl" className="text-sm">service Image Url</label>
-                <input id="serviceImageUrl" type="text" name='serviceImageUrl' placeholder="Image Url" className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
+                <label htmlFor="serviceImageUrl" className="text-white text-sm">service Image Url</label>
+                <input id="serviceImageUrl" type="text" name='serviceImageUrl' placeholder="Image Url" className="w-full p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
             </div>
             <div className="col-span-full sm:col-span-3">
-                <label htmlFor="email" className="text-sm">Description</label>
-                <input id="Description" type="text" name='Description' placeholder="add Description"  className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
+                <label htmlFor="email" className="text-white text-sm">Description</label>
+                <input id="Description" type="text" name='Description' placeholder="add Description"  className="w-full p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
             </div>
             <div className="col-span-full">
-                <label htmlFor="price" className="text-sm">price</label>
-                <input id="price" type="text" placeholder="price" name='price' className="w-full rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required />
+                <label htmlFor="price" className="text-white text-sm">price</label>
+                <input id="price" type="text" placeholder="price" name='price' className="w-full p-2 rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required />
             </div>
             <div className="col-span-full">
-                <label htmlFor="message" className="text-sm">Country Name</label>
-                <input id="countryName" type="text"  name='countryName' placeholder="countryName" className="w-full h-25 rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
+                <label htmlFor="message" className="text-white text-sm">Country Name</label>
+                <input id="countryName" type="text"  name='countryName' placeholder="countryName" className="w-full p-2 h-25 rounded-md focus:ring focus:ring-opacity-75 focus:ring-sky-600 border-gray-300 text-gray-900" required/>
             </div>
                 {
                     user?.uid? <>
-                     <label htmlFor="submit" className="text-sm"></label>
+                     <label htmlFor="submit" className="text-white text-sm"></label>
                     <button type="submit" className="flex items-center justify-center w-full p-3 font-semibold tracking-wide rounded-md bg-sky-600 text-gray-50">post</button>
                     </>
                     :

@@ -1,10 +1,13 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import {GoogleAuthProvider} from 'firebase/auth';
-import { AuthContext } from '../../contexts/Authprovider/Authprovider';
 import toast from 'react-hot-toast';
+import { Link, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/Authprovider/Authprovider';
+import useTitle from '../../hooks/useTitle';
 
 const Register = () => {
+
+	useTitle('Register')
 
 	const navigate = useNavigate();
 

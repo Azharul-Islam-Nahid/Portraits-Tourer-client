@@ -1,10 +1,13 @@
+import { GoogleAuthProvider } from 'firebase/auth';
 import React, { useContext } from 'react';
-import { Link,useNavigate,useLocation } from 'react-router-dom';
-import {GoogleAuthProvider} from 'firebase/auth';
-import { AuthContext } from '../../contexts/Authprovider/Authprovider';
 import toast from 'react-hot-toast';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { AuthContext } from '../../contexts/Authprovider/Authprovider';
+import useTitle from '../../hooks/useTitle';
 
 const Login = () => {
+
+	useTitle('Login')
 
     const { login,providerLogin } = useContext(AuthContext);
 

@@ -25,15 +25,17 @@ const Header = () => {
       {user?.uid ?
 
 <>
-        <li><Link to='/myreview'>My Review</Link></li>
-        <li><Link to='/addservice'>Add service</Link></li>
         <li><Link to='/allservices'>Service</Link></li>
+        <li><Link to='/addservice'>Add service</Link></li>
+        <li><Link to='/myreview'>My Review</Link></li>
         <li><Link>Blog</Link></li>
+        <li><Link to='/faq'>Faq</Link></li>
 </>
 :
 <>
 <li><Link to='/allservices'>Service</Link></li>
         <li><Link>Blog</Link></li>
+        <li><Link to='/faq'>Faq</Link></li>
 </>
 }
         
@@ -46,9 +48,9 @@ const Header = () => {
     {user?.uid ?
 
 <>
-        <li><Link to='/myreview'>My Review</Link></li>
-        <li><Link to='/addservice'>Add service</Link></li>
         <li><Link to='/allservices'>Service</Link></li>
+        <li><Link to='/addservice'>Add service</Link></li>
+        <li><Link to='/myreview'>My Review</Link></li>
         <li><Link to='/blog'>Blog</Link></li>
         <li><Link to='/faq'>Faq</Link></li>
 </>

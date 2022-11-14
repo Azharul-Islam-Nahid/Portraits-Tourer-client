@@ -6,7 +6,7 @@ import Errorpage from "../../components/Errorpage/Errorpage";
 import Faq from "../../components/Faq/Faq";
 import Home from "../../components/Home/Home";
 import Login from "../../components/Login/Login";
-import Myreview from "../../components/Myreview/Myreview";
+import MyReviews from "../../components/Myreview/MyReview";
 import Register from "../../components/Register/Register";
 import Reviews from "../../components/Reviews/Reviews";
 import Servicedetails from "../../components/Servicedetails/Servicedetails";
@@ -51,7 +51,7 @@ const router =createBrowserRouter([
         },
         {
           path:'/myreview',
-          element:<PrivateRoute><Myreview></Myreview></PrivateRoute>
+          element:<PrivateRoute><MyReviews></MyReviews></PrivateRoute>
         },
         {
           path:'/blog',
