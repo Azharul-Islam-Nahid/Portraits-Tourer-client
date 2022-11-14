@@ -22,7 +22,7 @@ const MyReviewCards = ({ myReview, handleDelete }) => {
        
         // console.log(id);
 
-        fetch(`http://localhost:5000/review/${id}`, {
+        fetch(`https://portraits-tourer-server-side.vercel.app/review/${id}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
