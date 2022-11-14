@@ -20,7 +20,7 @@ const Home = () => {
         <div className='container m-auto mt-0'>
             <div className="hero min-h-screen">
                 <div className="hero-content flex-col lg:flex-row">
-                    <img className='w-6/12' src='https://thumbs.dreamstime.com/b/tour-guide-provide-assistance-banner-organize-visit-museum-attraction-site-interest-cultural-historical-contemporary-heritage-143607771.jpg' alt='' />
+                    <img className='w-6/12' src='https://i.ibb.co/ZLYB7t3/tour-guide-provide-assistance-banner-organize-visit-museum-attraction-site-interest-cultural-histori.jpg' alt='' />
                     <div>
                         <h1 className="text-5xl font-bold">Portraits Tourer</h1>
                     </div>
