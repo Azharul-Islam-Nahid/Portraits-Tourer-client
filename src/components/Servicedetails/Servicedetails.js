@@ -16,7 +16,7 @@ const Servicedetails = () => {
   // console.log(reviews);
   return (
     <div className=" w-full">
-      <div className="m-auto mt-20 mb-20 w-2/4 rounded-md shadow-md bg-gray-50 text-gray-800">
+      <div className="m-auto mt-20 mb-20 lg:w-2/4 rounded-md shadow-md bg-gray-50 text-gray-800">
         <img
           src={service.service_img}
           alt=""
@@ -28,16 +28,16 @@ const Servicedetails = () => {
               {service?.service_name}
             </h2>
             <p className="text-gray-800 text-justify">Description: {service?.description}</p>
-              <div className="flex justify-between font-bold">
-                <p>Duration: {service?.duration}</p>
-                <p>Price: {service?.price} $</p>
-              </div>
+            <div className="flex justify-between font-bold">
+              <p>Duration: {service?.duration}</p>
+              <p>Price: {service?.price} $</p>
+            </div>
           </div>
         </div>
       </div>
       <div className="divider lg:divider-vertical"></div>
       <div className="text-center">
-      <Link to={`/review/${service._id}`}>
+        <Link to={`/review/${service._id}`}>
           <button
             type="button"
             className="mb-10  w-25 p-3 font-semibold tracking-wide rounded-md bg-sky-600 text-gray-50"
@@ -47,11 +47,11 @@ const Servicedetails = () => {
         </Link>
       </div>
       <div className="mt-20 grid lg:grid-cols-2  card  rounded-box place-items-center">
-        
+
         {reviews.map((review) => (
           <div
             key={review._id}
-            className="mb-20 w-8/12 flex flex-col p-6 divide-y rounded-md divide-gray-300 bg-gray-200 text-gray-800"
+            className="mb-20 lg:w-8/12  flex flex-col p-6 divide-y rounded-md divide-gray-300 bg-gray-200 text-gray-800"
           >
             <div className="flex justify-between p-4">
               <div className="flex space-x-4">
@@ -65,7 +65,7 @@ const Servicedetails = () => {
                 <div>
                   <h4 className="font-bold">Name: {review?.name}</h4>
                   <h4 className="font-xl">Service: {service_name}</h4>
-                  <span className="text-xs text-gray-600">{}</span>
+                  <span className="text-xs text-gray-600">{ }</span>
                 </div>
               </div>
               <div className="flex items-center ml-5 space-x-2 text-yellow-500">
